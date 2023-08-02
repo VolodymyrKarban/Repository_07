@@ -1,16 +1,7 @@
 from pathlib import Path
 import shutil
 import os
-
-# З ціею функціею не зміг докінця розібратися та запустити прогу.
-#def main():
-#    try:
-#       path = Path(sys.argv[0])
-#    except IndexError:
-#        return "Нет пути ", path, " к папке"
-#    if not path.exists():
-#        return "Папка с путем ", path, " не существует"
-#    return "Все ок путь ", path, " существует"
+import sys
 
 FILE_TIPES = {
     "Images": [".jpg", ".png", ".jpeg", ".svg"],
@@ -76,10 +67,7 @@ def sorted(path: Path):
             for file_tipe, extension in FILE_TIPES.items():
                 if file_path.suffix in extension:
                     category = file_tipe
-            #i = i + 1
-            #print( "Путь:= ", root, " Имя файла:= ", filename," Название:= ",file_path.stem, " Раcширение:= ", file_path.suffix, " Категория:= ",category,)
-            #print("Откуда пишем:>", file_path)
-            #print("Что и куда пишем:>",Path(os.path.join(path, category, translate(filename)))," ", i, "-Й файл")
+           
             filename_norm = translate(filename)
             if file_path != Path(os.path.join(path, category, filename_norm)):
                 #print("remuve, Усли не совпали или если в папке категории не тот файл или не правильное имя то перезапись \n")
@@ -89,6 +77,47 @@ def sorted(path: Path):
                     #print(file_path,"  >>> архив уже в папке Archives делаем ему unpack в папку FILE_TIPES[category][0] >> ",Path( os.path.join(path, FILE_TIPES[category][0], filename_norm)), )
                 os.remove(file_path) #И удаляем перемещенный файл.
             clear_empty_folders(path)#Удаляем пустые папки в каждой поддиректории
+    print ("Сортування виконано.")
 
-path = Path("C:/Testfolder")
-sorted(path)
+
+def to_check_the_folder_path():
+    try:
+        path = Path(sys.argv[1])
+    except IndexError:
+        return "Нет пути  к папке"
+    if not path.exists():
+        return "Папка с путем ", path, " не существует"
+    print ("Шлях:",path," існуе.")
+    sorted(path)
+
+to_check_the_folder_path()
+
+#path = Path("C:/Testfolder")
+#sorted(path)
+
+'''
+    while True:
+        path = (input("Вкажіть шлях до папки як треба сортувати: "))
+        if os.path.exists(path):
+            print ("Шлях:",path," існуе.")
+            sorted(path)
+            break
+        else:
+            print ("Шлях:",path," не існуе. Введіть вірний шлях або команду exit для завершення роботи")
+        if path.lower() == "exit":
+            print ("Goodbye")
+            break   
+
+
+def input_path():
+    try:
+        path = Path(sys.argv[0])
+    except IndexError:
+        return "Нет пути ", path, " к папке"
+    if not path.exists():
+        return "Папка с путем ", path, " не существует"
+    return "Все ок путь ", path, " существует"
+
+'''
+
+#to_check_the_folder_path()

@@ -9,5 +9,5 @@ setup(
     author_email='volodymyrkarban@gmail.com',
     license='MIT',
     packages=find_namespace_packages(),
-    entry_points={'console_scripts': ['clean_folder = clean_folder.clean:sorted']}
+    entry_points={'console_scripts': ['clean_folder = clean_folder.clean:to_check_the_folder_path']}
 )

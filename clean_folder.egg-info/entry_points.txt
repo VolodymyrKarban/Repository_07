@@ -1,2 +1,0 @@
-[console_scripts]
-clean_folder = clean_folder.clean:to_check_the_folder_path
